@@ -63,11 +63,11 @@ class Model(nn.Module):
         # self.dropout = nn.Dropout(0.2) 
 
         if rnn_type == 'lstm':
-            self.encoder = nn.LSTM(256, 256, 2, batch_first=True)
-            self.decoder = nn.LSTM(256, 256, 2, batch_first=True)
+            self.encoder = nn.LSTM(256, 256, 10, batch_first=True)
+            self.decoder = nn.LSTM(256, 256, 10, batch_first=True)
         else:
-            self.encoder = nn.GRU(256, 256, 2, batch_first=True)
-            self.decoder = nn.GRU(256, 256, 2, batch_first=True)
+            self.encoder = nn.GRU(256, 256, 10, batch_first=True)
+            self.decoder = nn.GRU(256, 256, 10, batch_first=True)
 
         self.out = nn.Linear(256, vocab_size)
 
@@ -211,5 +211,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 

@@ -36,9 +36,12 @@ def evaluate_model(model_path, model_type='lstm'):
     test_loader = DataLoader(test_dataset, BATCH_SIZE, shuffle=False, collate_fn=collate_fn)
 
     print("\nloading model...")
-    model = Model(428, model_type).to(DEVICE)
-
     checkpoint = torch.load(model_path, map_location=DEVICE)
+
+    vocab_size = checkpoint['embed.weight'].shape[0]
+    print(f"Model vocab size: {vocab_size}")
+
+    model = Model(vocab_size, model_type).to(DEVICE)
     model.load_state_dict(checkpoint)
     model.eval()
 
